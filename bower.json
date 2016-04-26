@@ -1,0 +1,19 @@
+{
+  "name": "event-ticket-trackers",
+  "authors": [
+    "Robert Frederick Underwood <runderwood5@gmail.com>"
+  ],
+  "description": "event-ticket-trackers",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
+}

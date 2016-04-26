@@ -1,0 +1,56 @@
+<html>
+<!-- Derived from https://thinkster.io/angular-rails -->
+<head>
+  <title>Event Tracker</title><!-- Latest compiled and minified CSS -->
+    <link rel="/assets/application.css">
+
+    <script src="/assets/application.js"></script>
+    <script src="/assets/angular.min.js"></script>
+    <script src="/assets/app2.js"></script>
+    
+    <%= javascript_include_tag('application.js') %>
+    <%= javascript_include_tag('mapscripts.js') %>
+
+</head>
+  
+<body ng-app="eventTrackerApp" ng-controller="EventListCtrl">
+<h1>Listing Events</h1>
+<h2>This is an angular app</h2>
+  <table class="table table-striped">
+    <tr>
+      <th>Event Title</th>
+      <th>Event City</th>
+      <th>&nbsp;</th>
+    </tr>
+    
+    <tr ng-repeat="event in events">
+      <td>{{event.event.event_title}}</td>
+      <td>{{event.event.event_city}}</td>
+      <td><a href="" ng-click="removeEvent(event)">Remove</a></td>
+    </tr>
+          
+    <tr>
+    <!-- <form ng-submit="addEvent()"> --> 
+      <td><div class="form-group">
+        <input type="text" ng-model="event_title"></input>
+      </div>
+      </td>
+      
+      <td>
+        <div class="form-group">
+          <input type="text" ng-model="event_city"></input>
+        </div>
+      </td>
+      <td>
+        <a href="" ng-click="addEvent(event)">Add Event</a>
+        <!-- <button type="submit" class="btn btn-default">Add Event</button>-->
+      </td>
+    </form>
+    </tr>
+
+</table>
+
+    
+    
+  </body>
+</html>
