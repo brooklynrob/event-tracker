@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails-api'
 
+gem 'geokit'
+gem 'geokit-rails', github: 'geokit/geokit-rails'
+
+gem 'geocoder'
+
 # font-awesome
 gem 'font-awesome-sass'
 

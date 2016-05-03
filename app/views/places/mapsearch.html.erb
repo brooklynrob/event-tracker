@@ -15,5 +15,28 @@
                     <input class="form-control" id="q" placeholder="City, State, Postal Code" type="text"/>
                 </div>
             </form>
+            <form class="form-inline" id="form-type-selector" role="form">
+                <div class="form-group" style="background-color:white">
+                    
+                
+                    
+                    <ul class="list-inline">
+                       
+                        <!-- Iterate Through Each Active venue type -->
+                        <% @venue_types.each do |venue_type| %>
+                        
+                        <!-- Set image -- if image doesn't exist use generic image -->
+                        
+                        
+                        
+                        <li><img src="../../assets/<%= venue_type.venue_type %>-40x40.png"><input class="form-control" type="checkbox" label = "<%= venue_type.venue_type %>" name="venue_type" value="<%= venue_type.venue_type %>"></li>
+
+                        <% end %>
+                        
+                     </ul>
+                    
+                    
+                </div>
+            </form>
         </div>
     </div>

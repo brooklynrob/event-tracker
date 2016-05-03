@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426011058) do
+ActiveRecord::Schema.define(version: 20160503145542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,11 @@ ActiveRecord::Schema.define(version: 20160426011058) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.datetime "datetime"
-    t.string   "seatgeek_eventid"
-    t.string   "seatgeek_venueid"
-    t.string   "eventful_eventid"
-    t.string   "eventful_venueid"
+    t.string   "event_sourceid"
+    t.string   "venue_sourceid"
     t.string   "seatgeek_eventurl"
     t.integer  "venue_id"
+    t.string   "event_type"
   end
 
   create_table "us_geos", force: :cascade do |t|
@@ -56,6 +55,15 @@ ActiveRecord::Schema.define(version: 20160426011058) do
     t.datetime "updated_at",                                       null: false
   end
 
+  create_table "venue_types", force: :cascade do |t|
+    t.string   "venue_type"
+    t.string   "venue_status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "venue_types", ["venue_type"], name: "index_venue_types_on_venue_type", unique: true, using: :btree
+
   create_table "venues", force: :cascade do |t|
     t.string   "name"
     t.string   "address1"
@@ -63,14 +71,14 @@ ActiveRecord::Schema.define(version: 20160426011058) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.decimal  "latitude",                    precision: 10, scale: 6
-    t.decimal  "longitude",                   precision: 10, scale: 6
-    t.string   "seatgeek_venueid"
-    t.string   "eventful_venueid"
+    t.decimal  "latitude",                  precision: 10, scale: 6
+    t.decimal  "longitude",                 precision: 10, scale: 6
+    t.string   "venue_sourceid"
     t.string   "venue_source"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.string   "postal_code",      limit: 20
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "postal_code",    limit: 20
+    t.string   "venue_type"
   end
 
   add_foreign_key "events", "venues"

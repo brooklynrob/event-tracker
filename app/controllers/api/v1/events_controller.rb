@@ -2,7 +2,28 @@ class Api::V1::EventsController < ApplicationController
     # respond_to :json
     
     def index
-        @events = Event.all
+        #@events = Event.all
+       
+       
+        #Create new array
+        @events = Array.new
+        
+        #Iterate over each event
+        Event.all.each do |event|
+            
+            #Add a property that contains the venue as an array
+            class << event
+                attr_accessor :venue
+            end
+        event.venue = "hello"    
+        #event.venue = Venue.where("id = event.venue_id")
+        @events.push(event)
+            
+        end            
+
+        
+
+        #@events += [venue_name:"rob"]
         render :json => @events
         #respond_with Event.all
     end

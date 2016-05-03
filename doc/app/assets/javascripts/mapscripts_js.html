@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>mapscripts.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../README-cloudide_md.html">README-cloudide</a>
+  
+    <li><a href="../../../README_rdoc.html">README</a>
+  
+    <li><a href="../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../US-test_txt.html">US-test</a>
+  
+    <li><a href="../../../US_txt.html">US</a>
+  
+    <li><a href="../../../app/assets/javascripts/angular_min_js.html">angular.min.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/app-org_js.html">app-org.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/app2_js.html">app2.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/events_coffee.html">events.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/mapscripts_js.html">mapscripts.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/markerwithlabel_packed_js.html">markerwithlabel_packed.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeahead_jquery_min_js.html">typeahead.jquery.min.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/underscore-min_js.html">underscore-min.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_css_sass.html">application.css.sass</a>
+  
+    <li><a href="../../../app/assets/stylesheets/events_scss.html">events.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/styles_css.html">styles.css</a>
+  
+    <li><a href="../../../app/views/ang/index_html.html">index.html</a>
+  
+    <li><a href="../../../app/views/ang/npm-debug_log.html">npm-debug.log</a>
+  
+    <li><a href="../../../bower_json.html">bower.json</a>
+  
+    <li><a href="../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../db/seat-geek-json-test1_json.html">seat-geek-json-test1.json</a>
+  
+    <li><a href="../../../js.html">js</a>
+  
+    <li><a href="../../../lib/tasks/import_us_geos_csv_rake.html">import_us_geos_csv.rake</a>
+  
+    <li><a href="../../../log/development_log.html">development.log</a>
+  
+    <li><a href="../../../public/404_html.html">404.html</a>
+  
+    <li><a href="../../../public/422_html.html">422.html</a>
+  
+    <li><a href="../../../public/500_html.html">500.html</a>
+  
+    <li><a href="../../../public/assets/application-07ccb7c96b981066c89966ac9b45d9e1134188b24c99e45bd5a80d4fca85a3ab_js.html">application-07ccb7c96b981066c89966ac9b45d9e1134188b24c99e45bd5a80d4fca85a3ab.js</a>
+  
+    <li><a href="../../../public/assets/application-0a980c7494af1b3c5aea82b921643f12333afa53dac2f43a7283a0dc8a3318e1_js.html">application-0a980c7494af1b3c5aea82b921643f12333afa53dac2f43a7283a0dc8a3318e1.js</a>
+  
+    <li><a href="../../../public/assets/application-23eaf12502c5cdb33c20bbeb97ceae0843acffd97c3c27f2c77d9cd774e5220a_js.html">application-23eaf12502c5cdb33c20bbeb97ceae0843acffd97c3c27f2c77d9cd774e5220a.js</a>
+  
+    <li><a href="../../../public/assets/application-293f497379e3d75d77feaa4049618236f5c8e0353c5372d7047be8a9ed658a83_css.html">application-293f497379e3d75d77feaa4049618236f5c8e0353c5372d7047be8a9ed658a83.css</a>
+  
+    <li><a href="../../../public/assets/application-45a78ecb3f3cec99d9916a446a69b025718295a709d4b4dac3bce9be67d899e7_css.html">application-45a78ecb3f3cec99d9916a446a69b025718295a709d4b4dac3bce9be67d899e7.css</a>
+  
+    <li><a href="../../../public/assets/application-46577b547b605225f0e9237be01987a50b642748474ba69610d394803ba12e53_js.html">application-46577b547b605225f0e9237be01987a50b642748474ba69610d394803ba12e53.js</a>
+  
+    <li><a href="../../../public/assets/application-498958a9541daa70eeec7e0bb221d664eefa54ab72c4c99d825a2ad289beddb3_js.html">application-498958a9541daa70eeec7e0bb221d664eefa54ab72c4c99d825a2ad289beddb3.js</a>
+  
+    <li><a href="../../../public/assets/application-5b31859d119ce6c63504f7365786383012c15d620419b11db195a8d0d51e321c_js.html">application-5b31859d119ce6c63504f7365786383012c15d620419b11db195a8d0d51e321c.js</a>
+  
+    <li><a href="../../../public/assets/application-88078eb1352c6498148db7e245f7d65470a657d3277e932144ad3b42317074d0_js.html">application-88078eb1352c6498148db7e245f7d65470a657d3277e932144ad3b42317074d0.js</a>
+  
+    <li><a href="../../../public/assets/application-bab2d144942e467f134a13aa4d015714c454005489d11f4960f11f4c32ca5776_js.html">application-bab2d144942e467f134a13aa4d015714c454005489d11f4960f11f4c32ca5776.js</a>
+  
+    <li><a href="../../../public/assets/application-dece2fb77729ae74f260b34050bd8dbb3fce5b1d5b74a30b939157bcecf1dfed_js.html">application-dece2fb77729ae74f260b34050bd8dbb3fce5b1d5b74a30b939157bcecf1dfed.js</a>
+  
+    <li><a href="../../../public/assets/application-fe5583cc59d34417acbedcedc90c3cd51c1fa497a7496803e3b551d3af26a25f_css.html">application-fe5583cc59d34417acbedcedc90c3cd51c1fa497a7496803e3b551d3af26a25f.css</a>
+  
+    <li><a href="../../../public/assets/bootstrap/glyphicons-halflings-regular-42f60659d265c1a3c30f9fa42abcbb56bd4a53af4d83d316d6dd7a36903c43e5_svg.html">glyphicons-halflings-regular-42f60659d265c1a3c30f9fa42abcbb56bd4a53af4d83d316d6dd7a36903c43e5.svg</a>
+  
+    <li><a href="../../../public/assets/bootstrap/glyphicons-halflings-regular-d168d50a88c730b4e6830dc0da2a2b51dae4658a77d9619943c27b8ecfc19d1a_svg.html">glyphicons-halflings-regular-d168d50a88c730b4e6830dc0da2a2b51dae4658a77d9619943c27b8ecfc19d1a.svg</a>
+  
+    <li><a href="../../../public/assets/mapscripts-43fa931e9e7d3d464a3acf620119dc7ddc642d377bbf9b285e354ed8922dcd48_js.html">mapscripts-43fa931e9e7d3d464a3acf620119dc7ddc642d377bbf9b285e354ed8922dcd48.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-5bd07f1fbc16e38e973d51deb35e2ccd7f2b6b0e44d86ebd5e099d9850b342ad_js.html">mapscripts-5bd07f1fbc16e38e973d51deb35e2ccd7f2b6b0e44d86ebd5e099d9850b342ad.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-777c16cc761be3b9fa9dd50e0129e676ba7e801f466fa815198d4cfaec9339c4_js.html">mapscripts-777c16cc761be3b9fa9dd50e0129e676ba7e801f466fa815198d4cfaec9339c4.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-db71cac5dac27727ace7a73fab788370ad81537d93adf30619831be27178e272_js.html">mapscripts-db71cac5dac27727ace7a73fab788370ad81537d93adf30619831be27178e272.js</a>
+  
+    <li><a href="../../../public/assets/markerwithlabel_packed-274ca4ecdedf47af1006e3f09b3649b61e9c490fcbe646d455e5e7b48f81f2af_js.html">markerwithlabel_packed-274ca4ecdedf47af1006e3f09b3649b61e9c490fcbe646d455e5e7b48f81f2af.js</a>
+  
+    <li><a href="../../../public/assets/typeahead_jquery_min-7560454e54b0a88e1e0c794b01cd64050796ce9b9d5cc33431336ebc2aa312f1_js.html">typeahead.jquery.min-7560454e54b0a88e1e0c794b01cd64050796ce9b9d5cc33431336ebc2aa312f1.js</a>
+  
+    <li><a href="../../../public/assets/underscore-min-8c17561264389571750ac522c272868d7105cf5e3f8af4761d09489b631d177c_js.html">underscore-min-8c17561264389571750ac522c272868d7105cf5e3f8af4761d09489b631d177c.js</a>
+  
+    <li><a href="../../../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../../../public/index_html.html">index.html</a>
+  
+    <li><a href="../../../public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../readme_txt.html">readme</a>
+  
+    <li><a href="../../../tmp/pids/server_pid.html">server.pid</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/assets/javascripts/mapscripts.js">
+
+<pre class="ruby"><span class="ruby-identifier">global</span> <span class="ruby-identifier">google</span>   
+<span class="ruby-identifier">global</span> <span class="ruby-identifier">_</span>
+</pre>
+
+<p>/**</p>
+
+<pre class="ruby"> <span class="ruby-identifier">scripts</span>.<span class="ruby-identifier">js</span>
+
+ <span class="ruby-constant">Computer</span> <span class="ruby-constant">Science</span> <span class="ruby-value">50</span>
+ <span class="ruby-constant">Problem</span> <span class="ruby-constant">Set</span> <span class="ruby-value">8</span>
+
+ <span class="ruby-constant">Global</span> <span class="ruby-constant">JavaScript</span>.
+
+<span class="ruby-operator">/</span>
+</pre>
+
+<p>// Google Map var map;</p>
+
+<p>// markers for map var markers = [];</p>
+
+<p>// info window var info = new google.maps.InfoWindow();</p>
+
+<p>// execute when the DOM is fully loaded $(function() {</p>
+
+<pre>// styles for map
+// https://developers.google.com/maps/documentation/javascript/styling
+var styles = [
+
+    // hide Google&#39;s labels
+    {
+        featureType: &quot;all&quot;,
+        elementType: &quot;labels&quot;,
+        stylers: [
+            {visibility: &quot;off&quot;}
+        ]
+    },
+
+    // hide roads
+    {
+        featureType: &quot;road&quot;,
+        elementType: &quot;geometry&quot;,
+        stylers: [
+            {visibility: &quot;off&quot;}
+        ]
+    }
+
+];
+
+// options for map
+// https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+var options = {
+    center: {lat: 44.5641, lng: -69.6654}, // Colby College
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    maxZoom: 14,
+    panControl: true,
+    styles: styles,
+    zoom: 13,
+    zoomControl: true
+};
+
+// get DOM node in which map will be instantiated
+var canvas = $(&quot;#map-canvas&quot;).get(0);
+
+// instantiate map
+map = new google.maps.Map(canvas, options);
+
+// configure UI once Google Map is idle (i.e., loaded)
+google.maps.event.addListenerOnce(map, &quot;idle&quot;, configure);</pre>
+
+<p>});</p>
+
+<p>/**</p>
+
+<pre> Adds marker for place to map.
+/</pre>
+
+<p>function addMarker(place) {</p>
+
+<pre>// Code built in part off of code at http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
+var lat = Number(place.latitude);
+var lng = Number(place.longitude);
+
+var myLatLng = {lat:lat, lng:lng};
+
+var image = &#39;https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png&#39;;
+//var image = &#39;http://www.taperssection.com/avatars/phish_transparent.gif&#39;;
+//var image = &#39;img/phish_transparent.gif&#39;;
+
+var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: place.place_name,
+    icon: image
+
+});
+
+// Push Marker Into Array
+markers.push(marker);
+
+var content = &quot; &quot;; 
+
+$.getJSON(&quot;../api/v1/venues/search?geo=&quot;+place.place_name)
+    .done(function(data, textStatus, jqXHR) {
+        content += &quot;Local Venues&lt;br&gt;&lt;ul class=dropdown-menu&gt;&quot;;
+
+        //console.log(data);
+        for (var i = 0; i &lt; data.length; i++)
+        {
+            content += &quot;&lt;li&gt;&lt;a href=../../venues/&quot; + data[i].venue.id + &quot; TARGET=_BLANK&gt;&quot; + data[i].venue.name +&quot; (&quot; +data[i].venue.city+ &quot;)&lt;/a&gt;&lt;/li&gt;&quot;;
+        }
+    content += &quot;&lt;/ul&gt;&quot;;
+    })
+
+    .fail(function(jqXHR, textStatus, errorThrown) {
+    content += &quot;No Local Venues&lt;br&gt;&quot;;
+    //markers[place].setMap(null);
+    // log error to browser&#39;s console
+    console.log(errorThrown.toString());
+    });
+
+// derived from view-source:http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
+// show infowindow on click   
+google.maps.event.addListener(marker, &quot;click&quot;, function (e) { showInfo(marker, content); });
+
+// Extra fun
+if (place.admin_code1 == &quot;NY&quot;)
+{
+    content_double_click = &quot;Double Click Occulounge!&lt;br&gt;&lt;iframe width=&amp;quot;420&amp;quot; height=&amp;quot;315&amp;quot; src=https://www.ustream.tv/embed/18172578?html5ui?autoplay=1 frameborder=&amp;quot;0&amp;quot; allowfullscreen&gt;&lt;/iframe&gt;&quot;;        
+
+}
+
+else
+{
+    content_double_click = &quot;Double Click Phish!&lt;br&gt;&lt;iframe width=&amp;quot;420&amp;quot; height=&amp;quot;315&amp;quot; src=https://www.youtube.com/embed/6gNnXfGd6WQ?autoplay=1&amp;iv_load_policy=3 frameborder=&amp;quot;0&amp;quot; allowfullscreen&gt;&lt;/iframe&gt;&quot;;
+}
+
+google.maps.event.addListener(marker, &quot;dblclick&quot;, function (e) { showInfo(marker, content_double_click); });</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre class="ruby"> <span class="ruby-constant">Configures</span> <span class="ruby-identifier">application</span>.
+<span class="ruby-operator">/</span>
+</pre>
+
+<p>function configure() {</p>
+
+<pre>// update UI after map has been dragged
+google.maps.event.addListener(map, &quot;dragend&quot;, function() {
+    update();
+});
+
+// update UI after zoom level changes
+google.maps.event.addListener(map, &quot;zoom_changed&quot;, function() {
+    update();
+});
+
+// remove markers whilst dragging
+google.maps.event.addListener(map, &quot;dragstart&quot;, function() {
+    removeMarkers();
+});
+
+// configure typeahead
+// https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
+$(&quot;#q&quot;).typeahead({
+    autoselect: true,
+    highlight: true,
+    minLength: 1
+},
+{
+    source: search,
+    templates: {
+        empty: &quot;no places found yet&quot;,
+        suggestion: _.template(&quot;&lt;p&gt;&lt;%- place_name %&gt;, &lt;%- admin_name1 %&gt; &lt;%- postal_code %&gt;&lt;/p&gt;&quot;)
+    }
+});
+
+// re-center map after place is selected from drop-down
+$(&quot;#q&quot;).on(&quot;typeahead:selected&quot;, function(eventObject, suggestion, name) {
+
+    // ensure coordinates are numbers
+    var latitude = (_.isNumber(suggestion.latitude)) ? suggestion.latitude : parseFloat(suggestion.latitude);
+    var longitude = (_.isNumber(suggestion.longitude)) ? suggestion.longitude : parseFloat(suggestion.longitude);
+
+    // set map&#39;s center
+    map.setCenter({lat: latitude, lng: longitude});
+
+    // update UI
+    update();
+});
+
+// hide info window when text box has focus
+$(&quot;#q&quot;).focus(function(eventData) {
+    hideInfo();
+});
+
+// re-enable ctrl- and right-clicking (and thus Inspect Element) on Google Map
+// https://chrome.google.com/webstore/detail/allow-right-click/hompjdfbfmmmgflfjdlnkohcplmboaeo?hl=en
+document.addEventListener(&quot;contextmenu&quot;, function(event) {
+    event.returnValue = true; 
+    event.stopPropagation &amp;&amp; event.stopPropagation(); 
+    event.cancelBubble &amp;&amp; event.cancelBubble();
+}, true);
+
+// update UI
+update();
+
+// give focus to text box
+$(&quot;#q&quot;).focus();</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre class="ruby"> <span class="ruby-constant">Hides</span> <span class="ruby-identifier">info</span> <span class="ruby-identifier">window</span>.
+<span class="ruby-operator">/</span>
+</pre>
+
+<p>function hideInfo() {</p>
+
+<pre class="ruby"><span class="ruby-identifier">info</span>.<span class="ruby-identifier">close</span>();
+</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre class="ruby"> <span class="ruby-constant">Removes</span> <span class="ruby-identifier">markers</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">map</span>.
+<span class="ruby-operator">/</span>
+</pre>
+
+<p>function removeMarkers() {</p>
+
+<pre>// derived from https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+for (var i = 0; i &lt; markers.length; i++)
+{
+    markers[i].setMap(null);
+    markers[i] = null;
+}
+
+markers = [];</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre> Searches database for typeahead&#39;s suggestions.
+/</pre>
+
+<p>function search(query, cb) {</p>
+
+<pre>// get places matching query (asynchronously)
+var parameters = {
+    geo: query
+};
+//$.getJSON(&quot;https://ide50-runderwood5.cs50.io/search.php&quot;, parameters)
+$.getJSON(&quot;../api/v1/places/search&quot;, parameters)
+.done(function(data, textStatus, jqXHR) {
+
+    // call typeahead&#39;s callback with search results (i.e., places)
+    cb(data);
+})
+.fail(function(jqXHR, textStatus, errorThrown) {
+
+    // log error to browser&#39;s console
+    console.log(errorThrown.toString());
+});</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre class="ruby"> <span class="ruby-constant">Shows</span> <span class="ruby-identifier">info</span> <span class="ruby-identifier">window</span> <span class="ruby-identifier">at</span> <span class="ruby-identifier">marker</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">content</span>.
+<span class="ruby-operator">/</span>
+</pre>
+
+<p>function showInfo(marker, content) {</p>
+
+<pre>// start div
+var div = &quot;&lt;div id=&#39;info&#39;&gt;&quot;;
+if (typeof(content) === &quot;undefined&quot;)
+{
+    // http://www.ajaxload.info/
+    div += &quot;&lt;img alt=&#39;loading&#39; src=&#39;img/ajax-loader.gif&#39;/&gt;&quot;;
+}
+else
+{
+    div += content;
+}
+
+// end div
+div += &quot;&lt;/div&gt;&quot;;
+
+// set info window&#39;s content
+info.setContent(div);
+
+// open info window (if not already open)
+info.open(map, marker);</pre>
+
+<p>}</p>
+
+<p>/**</p>
+
+<pre> Updates UI&#39;s markers.
+/</pre>
+
+<p>function update()  {</p>
+
+<pre>// get map&#39;s bounds
+var bounds = map.getBounds();
+var ne = bounds.getNorthEast();
+var sw = bounds.getSouthWest();
+
+// get places within bounds (asynchronously)
+var parameters = {
+    ne: ne.lat() + &quot;,&quot; + ne.lng(),
+    q: $(&quot;#q&quot;).val(),
+    sw: sw.lat() + &quot;,&quot; + sw.lng()
+};
+$.getJSON(&quot;https://ide50-runderwood5.cs50.io/update.php&quot;, parameters)
+.done(function(data, textStatus, jqXHR) {
+
+    // remove old markers from map
+    removeMarkers();
+
+    // add new markers to map
+    for (var i = 0; i &lt; data.length; i++)
+    {
+        addMarker(data[i]);
+        // Add handling such that only markers are added for venues and events
+    }
+ })
+ .fail(function(jqXHR, textStatus, errorThrown) {
+
+     // log error to browser&#39;s console
+     console.log(errorThrown.toString());
+ });</pre>
+
+<p>}</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

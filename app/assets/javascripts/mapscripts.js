@@ -13,6 +13,11 @@
 // Google Map
 var map;
 
+// Make this dynamic
+// Create a JSON query of active types
+
+var types= ["venue","pollsite"];
+
 // markers for map
 var markers = [];
 
@@ -40,19 +45,42 @@ $(function() {
             featureType: "road",
             elementType: "geometry",
             stylers: [
-                {visibility: "off"}
+                {visibility: "on"}
             ]
         }
 
     ];
 
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
     // options for map
     // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+    
+  
+    
+    
     var options = {
-        center: {lat: 44.5641, lng: -69.6654}, // Colby College
+        // center: {lat: 40.7159, lng: -73.9861}
+        center: {lat: 40.7159, lng: -73.9861}, 
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        maxZoom: 14,
+        maxZoom: 20,
         panControl: true,
         styles: styles,
         zoom: 13,
@@ -79,21 +107,21 @@ function addMarker(place)
 {
 
     // Code built in part off of code at http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
-    var lat = Number(place.latitude);
-    var lng = Number(place.longitude);
+    var lat = Number(place.venue.latitude);
+    var lng = Number(place.venue.longitude);
   
     var myLatLng = {lat:lat, lng:lng};
     
+    var image = '../../assets/' + place.venue.venue_type + '-40x40.png';
     
-    
-    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    //var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
     //var image = 'http://www.taperssection.com/avatars/phish_transparent.gif';
     //var image = 'img/phish_transparent.gif';
     
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        title: place.place_name,
+        title: place.venue.name,
         icon: image
         
     });
@@ -101,33 +129,10 @@ function addMarker(place)
     // Push Marker Into Array
     markers.push(marker);
 
-    var content = " "; 
+    var content = place.venue.name; 
     
-
-            
-
-   
-
-    
-    $.getJSON("../api/v1/venues/search?geo="+place.place_name)
-        .done(function(data, textStatus, jqXHR) {
-            content += "Local Venues<br><ul class=dropdown-menu>";
-
-            //console.log(data);
-            for (var i = 0; i < data.length; i++)
-            {
-                content += "<li><a href=../../venues/" + data[i].venue.id + " TARGET=_BLANK>" + data[i].venue.name +" (" +data[i].venue.city+ ")</a></li>";
-            }
-        content += "</ul>";
-        })
-        
-        .fail(function(jqXHR, textStatus, errorThrown) {
-        content += "No Local Venues<br>";
-        //markers[place].setMap(null);
-        // log error to browser's console
-        console.log(errorThrown.toString());
-        });
-    
+    content += "<br><img src=../../assets/" + place.venue.venue_type + ".png>";
+ 
 
 
     // derived from view-source:http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
@@ -136,18 +141,7 @@ function addMarker(place)
 
     
     // Extra fun
-    if (place.admin_code1 == "NY")
-    {
-        content_double_click = "Double Click Occulounge!<br><iframe width=&quot;420&quot; height=&quot;315&quot; src=https://www.ustream.tv/embed/18172578?html5ui?autoplay=1 frameborder=&quot;0&quot; allowfullscreen></iframe>";        
-  
-    }
-    
-    else
-    {
-        content_double_click = "Double Click Phish!<br><iframe width=&quot;420&quot; height=&quot;315&quot; src=https://www.youtube.com/embed/6gNnXfGd6WQ?autoplay=1&iv_load_policy=3 frameborder=&quot;0&quot; allowfullscreen></iframe>";
-    }
-    
-    
+    var content_double_click = place.venue.name;
     google.maps.event.addListener(marker, "dblclick", function (e) { showInfo(marker, content_double_click); });
 
 }
@@ -159,12 +153,12 @@ function configure()
 {
     // update UI after map has been dragged
     google.maps.event.addListener(map, "dragend", function() {
-        update();
+        update(types);
     });
 
     // update UI after zoom level changes
     google.maps.event.addListener(map, "zoom_changed", function() {
-        update();
+        update(types);
     });
 
     // remove markers whilst dragging
@@ -198,13 +192,27 @@ function configure()
         map.setCenter({lat: latitude, lng: longitude});
 
         // update UI
-        update();
+        update(types);
     });
 
     // hide info window when text box has focus
     $("#q").focus(function(eventData) {
         hideInfo();
     });
+    
+    
+    $("#form-type-selector").change(function(){
+            types=[];
+            $.each($("input[name='venue_type']:checked"), function(){            
+                types.push($(this).val());
+            });
+
+            console.log("Selected Types: " + types.join("|"));
+            
+            update(types);
+        });
+    
+    
 
     // re-enable ctrl- and right-clicking (and thus Inspect Element) on Google Map
     // https://chrome.google.com/webstore/detail/allow-right-click/hompjdfbfmmmgflfjdlnkohcplmboaeo?hl=en
@@ -215,7 +223,7 @@ function configure()
     }, true);
 
     // update UI
-    update();
+    update(types);
 
     // give focus to text box
     $("#q").focus();
@@ -256,6 +264,7 @@ function search(query, cb)
     };
     //$.getJSON("https://ide50-runderwood5.cs50.io/search.php", parameters)
     $.getJSON("../api/v1/places/search", parameters)
+    
     .done(function(data, textStatus, jqXHR) {
 
         // call typeahead's callback with search results (i.e., places)
@@ -298,20 +307,37 @@ function showInfo(marker, content)
 /**
  * Updates UI's markers.
  */
-function update() 
+function update(types) 
 {
     // get map's bounds
-    var bounds = map.getBounds();
-    var ne = bounds.getNorthEast();
-    var sw = bounds.getSouthWest();
+    var locationCenter = map.getCenter();
+    
+    var latitude = locationCenter.lat();
+    var longitude = locationCenter.lng();
+    
+    var searchLocation = latitude+","+longitude;
+    
+    console.log("searchLocation: " + searchLocation);
+    
+
+    types = types || ["all"];
+    var typesString = types.join("|");
+    console.log("typesString: " + typesString );
 
     // get places within bounds (asynchronously)
     var parameters = {
-        ne: ne.lat() + "," + ne.lng(),
-        q: $("#q").val(),
-        sw: sw.lat() + "," + sw.lng()
+        types:typesString,
+        location:searchLocation,
+        radius:'5000.0'
+
     };
-    $.getJSON("https://ide50-runderwood5.cs50.io/update.php", parameters)
+    
+   // Make flip of types entirely on client side
+    
+    console.log(parameters);
+    //$.getJSON("https://ide50-runderwood5.cs50.io/update.php", parameters)
+    //$.getJSON("https://event-tickets-tracker-runderwood5.cs50.io/api/v1/venues/search?location=40.6720359149362,-73.9840260520577&radius=10000.0")
+    $.getJSON("https://event-tickets-tracker-runderwood5.cs50.io/api/v1/venues/search", parameters)
     .done(function(data, textStatus, jqXHR) {
 
         // remove old markers from map

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>underscore-min.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../README-cloudide_md.html">README-cloudide</a>
+  
+    <li><a href="../../../README_rdoc.html">README</a>
+  
+    <li><a href="../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../US-test_txt.html">US-test</a>
+  
+    <li><a href="../../../US_txt.html">US</a>
+  
+    <li><a href="../../../app/assets/javascripts/angular_min_js.html">angular.min.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/app-org_js.html">app-org.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/app2_js.html">app2.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/application_js.html">application.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/events_coffee.html">events.coffee</a>
+  
+    <li><a href="../../../app/assets/javascripts/mapscripts_js.html">mapscripts.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/markerwithlabel_packed_js.html">markerwithlabel_packed.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/typeahead_jquery_min_js.html">typeahead.jquery.min.js</a>
+  
+    <li><a href="../../../app/assets/javascripts/underscore-min_js.html">underscore-min.js</a>
+  
+    <li><a href="../../../app/assets/stylesheets/application_css_sass.html">application.css.sass</a>
+  
+    <li><a href="../../../app/assets/stylesheets/events_scss.html">events.scss</a>
+  
+    <li><a href="../../../app/assets/stylesheets/styles_css.html">styles.css</a>
+  
+    <li><a href="../../../app/views/ang/index_html.html">index.html</a>
+  
+    <li><a href="../../../app/views/ang/npm-debug_log.html">npm-debug.log</a>
+  
+    <li><a href="../../../bower_json.html">bower.json</a>
+  
+    <li><a href="../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../db/seat-geek-json-test1_json.html">seat-geek-json-test1.json</a>
+  
+    <li><a href="../../../js.html">js</a>
+  
+    <li><a href="../../../lib/tasks/import_us_geos_csv_rake.html">import_us_geos_csv.rake</a>
+  
+    <li><a href="../../../log/development_log.html">development.log</a>
+  
+    <li><a href="../../../public/404_html.html">404.html</a>
+  
+    <li><a href="../../../public/422_html.html">422.html</a>
+  
+    <li><a href="../../../public/500_html.html">500.html</a>
+  
+    <li><a href="../../../public/assets/application-07ccb7c96b981066c89966ac9b45d9e1134188b24c99e45bd5a80d4fca85a3ab_js.html">application-07ccb7c96b981066c89966ac9b45d9e1134188b24c99e45bd5a80d4fca85a3ab.js</a>
+  
+    <li><a href="../../../public/assets/application-0a980c7494af1b3c5aea82b921643f12333afa53dac2f43a7283a0dc8a3318e1_js.html">application-0a980c7494af1b3c5aea82b921643f12333afa53dac2f43a7283a0dc8a3318e1.js</a>
+  
+    <li><a href="../../../public/assets/application-23eaf12502c5cdb33c20bbeb97ceae0843acffd97c3c27f2c77d9cd774e5220a_js.html">application-23eaf12502c5cdb33c20bbeb97ceae0843acffd97c3c27f2c77d9cd774e5220a.js</a>
+  
+    <li><a href="../../../public/assets/application-293f497379e3d75d77feaa4049618236f5c8e0353c5372d7047be8a9ed658a83_css.html">application-293f497379e3d75d77feaa4049618236f5c8e0353c5372d7047be8a9ed658a83.css</a>
+  
+    <li><a href="../../../public/assets/application-45a78ecb3f3cec99d9916a446a69b025718295a709d4b4dac3bce9be67d899e7_css.html">application-45a78ecb3f3cec99d9916a446a69b025718295a709d4b4dac3bce9be67d899e7.css</a>
+  
+    <li><a href="../../../public/assets/application-46577b547b605225f0e9237be01987a50b642748474ba69610d394803ba12e53_js.html">application-46577b547b605225f0e9237be01987a50b642748474ba69610d394803ba12e53.js</a>
+  
+    <li><a href="../../../public/assets/application-498958a9541daa70eeec7e0bb221d664eefa54ab72c4c99d825a2ad289beddb3_js.html">application-498958a9541daa70eeec7e0bb221d664eefa54ab72c4c99d825a2ad289beddb3.js</a>
+  
+    <li><a href="../../../public/assets/application-5b31859d119ce6c63504f7365786383012c15d620419b11db195a8d0d51e321c_js.html">application-5b31859d119ce6c63504f7365786383012c15d620419b11db195a8d0d51e321c.js</a>
+  
+    <li><a href="../../../public/assets/application-88078eb1352c6498148db7e245f7d65470a657d3277e932144ad3b42317074d0_js.html">application-88078eb1352c6498148db7e245f7d65470a657d3277e932144ad3b42317074d0.js</a>
+  
+    <li><a href="../../../public/assets/application-bab2d144942e467f134a13aa4d015714c454005489d11f4960f11f4c32ca5776_js.html">application-bab2d144942e467f134a13aa4d015714c454005489d11f4960f11f4c32ca5776.js</a>
+  
+    <li><a href="../../../public/assets/application-dece2fb77729ae74f260b34050bd8dbb3fce5b1d5b74a30b939157bcecf1dfed_js.html">application-dece2fb77729ae74f260b34050bd8dbb3fce5b1d5b74a30b939157bcecf1dfed.js</a>
+  
+    <li><a href="../../../public/assets/application-fe5583cc59d34417acbedcedc90c3cd51c1fa497a7496803e3b551d3af26a25f_css.html">application-fe5583cc59d34417acbedcedc90c3cd51c1fa497a7496803e3b551d3af26a25f.css</a>
+  
+    <li><a href="../../../public/assets/bootstrap/glyphicons-halflings-regular-42f60659d265c1a3c30f9fa42abcbb56bd4a53af4d83d316d6dd7a36903c43e5_svg.html">glyphicons-halflings-regular-42f60659d265c1a3c30f9fa42abcbb56bd4a53af4d83d316d6dd7a36903c43e5.svg</a>
+  
+    <li><a href="../../../public/assets/bootstrap/glyphicons-halflings-regular-d168d50a88c730b4e6830dc0da2a2b51dae4658a77d9619943c27b8ecfc19d1a_svg.html">glyphicons-halflings-regular-d168d50a88c730b4e6830dc0da2a2b51dae4658a77d9619943c27b8ecfc19d1a.svg</a>
+  
+    <li><a href="../../../public/assets/mapscripts-43fa931e9e7d3d464a3acf620119dc7ddc642d377bbf9b285e354ed8922dcd48_js.html">mapscripts-43fa931e9e7d3d464a3acf620119dc7ddc642d377bbf9b285e354ed8922dcd48.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-5bd07f1fbc16e38e973d51deb35e2ccd7f2b6b0e44d86ebd5e099d9850b342ad_js.html">mapscripts-5bd07f1fbc16e38e973d51deb35e2ccd7f2b6b0e44d86ebd5e099d9850b342ad.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-777c16cc761be3b9fa9dd50e0129e676ba7e801f466fa815198d4cfaec9339c4_js.html">mapscripts-777c16cc761be3b9fa9dd50e0129e676ba7e801f466fa815198d4cfaec9339c4.js</a>
+  
+    <li><a href="../../../public/assets/mapscripts-db71cac5dac27727ace7a73fab788370ad81537d93adf30619831be27178e272_js.html">mapscripts-db71cac5dac27727ace7a73fab788370ad81537d93adf30619831be27178e272.js</a>
+  
+    <li><a href="../../../public/assets/markerwithlabel_packed-274ca4ecdedf47af1006e3f09b3649b61e9c490fcbe646d455e5e7b48f81f2af_js.html">markerwithlabel_packed-274ca4ecdedf47af1006e3f09b3649b61e9c490fcbe646d455e5e7b48f81f2af.js</a>
+  
+    <li><a href="../../../public/assets/typeahead_jquery_min-7560454e54b0a88e1e0c794b01cd64050796ce9b9d5cc33431336ebc2aa312f1_js.html">typeahead.jquery.min-7560454e54b0a88e1e0c794b01cd64050796ce9b9d5cc33431336ebc2aa312f1.js</a>
+  
+    <li><a href="../../../public/assets/underscore-min-8c17561264389571750ac522c272868d7105cf5e3f8af4761d09489b631d177c_js.html">underscore-min-8c17561264389571750ac522c272868d7105cf5e3f8af4761d09489b631d177c.js</a>
+  
+    <li><a href="../../../public/favicon_ico.html">favicon.ico</a>
+  
+    <li><a href="../../../public/index_html.html">index.html</a>
+  
+    <li><a href="../../../public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../readme_txt.html">readme</a>
+  
+    <li><a href="../../../tmp/pids/server_pid.html">server.pid</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/assets/javascripts/underscore-min.js">
+
+<p>//     Underscore.js 1.8.3 //     <a
+href="http://underscorejs.org">underscorejs.org</a> //     © 2009-2015
+Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors //
+Underscore may be freely distributed under the MIT license.
+(function(){function n(n){function
+t(t,r,e,u,i,o){for(;i&gt;=0&amp;&amp;o&gt;i;i+=n){var <a
+href="i">a=u?u</a>:<a href="a">i;e=r(e,t</a>,a,t)}return e}return
+function(r,e,u,i){e=b(e,i,4);var
+o=!k®&amp;&amp;m.keys®,a=(o||r).length,c=n&gt;0?0:a-1;return <a
+href="c">arguments.length<3&&(u=r[o?o</a>:c],c+=n),t(r,e,u,o,c,a)}}function
+t(n){return function(t,r,e){r=x(r,e);for(var <a
+href="i">u=O(t),i=n>0?0:u-1;i>=0&&u>i;i+=n)if(r(t</a>,i,t))return
+i;return-1}}function r(n,t,r){return function(e,u,i){var
+o=0,a=O(e);if(“number”==typeof
+i)n&gt;0?o=i&gt;=0?i:Math.max(i+a,o):a=i&gt;=0?Math.min(i+1,a):i+a+1;else
+if(r&amp;&amp;i&amp;&amp;a)return <a
+href="i">i=r(e,u),e</a>===u?i:-1;if(u!==u)return <a
+href="i">i=t(l.call(e,o,a),m.isNaN),i>=0?i+o:-1;for(i=n>0?o:a-1;i>=0&&a>i;i+=n)if(e</a>===u)return
+i;return-1}}function e(n,t){var <a
+href="r">r=I.length,e=n.constructor,u=m.isFunction(e)&&e.prototype||a,i=“constructor”;for(m.has(n,i)&&!m.contains(t,i)&&t.push(i);r–;)i=I</a>,i
+in <a href="i">n&&n</a>!==<a
+href="i">u</a>&amp;&amp;!m.contains(t,i)&amp;&amp;t.push(i)}var
+u=this,i=u._,o=Array.prototype,a=Object.prototype,c=Function.prototype,f=o.push,l=o.slice,s=a.toString,p=a.hasOwnProperty,h=Array.isArray,v=Object.keys,g=c.bind,y=Object.create,d=function(){},m=function(n){return
+n instanceof m?n:this instanceof m?void(this._wrapped=n):new
+m(n)};“undefined”!=typeof exports?(“undefined”!=typeof
+module&amp;&amp;module.exports&amp;&amp;(exports=module.exports=m),exports._=m):u._=m,m.VERSION=“1.8.3”;var
+b=function(n,t,r){if(t===void 0)return n;switch(null==r?3:r){case 1:return
+function®{return n.call(t,r)};case 2:return function(r,e){return
+n.call(t,r,e)};case 3:return function(r,e,u){return n.call(t,r,e,u)};case
+4:return function(r,e,u,i){return n.call(t,r,e,u,i)}}return
+function(){return n.apply(t,arguments)}},x=function(n,t,r){return
+null==n?m.identity:m.isFunction(n)?b(n,t,r):m.isObject(n)?m.matcher(n):m.property(n)};m.iteratee=function(n,t){return
+x(n,t,1/0)};var _=function(n,t){return function®{var
+e=arguments.length;if(2&gt;e||null==r)return r;for(var
+u=1;e&gt;u;u++)for(var <a
+href="u">i=arguments</a>,o=n(i),a=o.length,c=0;a&gt;c;c++){var <a
+href="c">f=o</a>;<a href="f">t&&r</a>!==void <a href="f">0||(r</a>=<a
+href="f">i</a>)}return
+r}},j=function(n){if(!m.isObject(n))return{};if(y)return
+y(n);d.prototype=n;var t=new d;return
+d.prototype=null,t},w=function(n){return function(t){return null==t?void <a
+href="n">0:t</a>}},A=Math.pow(2,53)-1,O=w(“length”),k=function(n){var
+t=O(n);return“number”==typeof
+t&amp;&amp;t&gt;=0&amp;&amp;A&gt;=t};m.each=m.forEach=function(n,t,r){t=b(t,r);var
+<a href="e">e,u;if(k(n))for(e=0,u=n.length;u>e;e++)t(n</a>,e,n);else{var <a
+href="e">i=m.keys(n);for(e=0,u=i.length;u>e;e++)t(n[i</a>],<a
+href="e">i</a>,n)}return
+n},m.map=m.collect=function(n,t,r){t=x(t,r);for(var
+e=!k(n)&amp;&amp;m.keys(n),u=(e||n).length,i=Array(u),o=0;u&gt;o;o++){var
+<a href="o">a=e?e</a>:<a href="o">o;i</a>=<a href="a">t(n</a>,a,n)}return
+i},m.reduce=m.foldl=m.inject=n(1),m.reduceRight=m.foldr=n(-1),m.find=m.detect=function(n,t,r){var
+e;return e=k(n)?m.findIndex(n,t,r):m.findKey(n,t,r),e!==void <a
+href="e">0&&e!==-1?n</a>:void 0},m.filter=m.select=function(n,t,r){var
+e=[];return
+t=x(t,r),m.each(n,function(n,r,u){t(n,r,u)&amp;&amp;e.push(n)}),e},m.reject=function(n,t,r){return
+m.filter(n,m.negate(x(t)),r)},m.every=m.all=function(n,t,r){t=x(t,r);for(var
+e=!k(n)&amp;&amp;m.keys(n),u=(e||n).length,i=0;u&gt;i;i++){var <a
+href="i">o=e?e</a>:<a
+href="o">i;if(!t(n</a>,o,n))return!1}return!0},m.some=m.any=function(n,t,r){t=x(t,r);for(var
+e=!k(n)&amp;&amp;m.keys(n),u=(e||n).length,i=0;u&gt;i;i++){var <a
+href="i">o=e?e</a>:<a
+href="o">i;if(t(n</a>,o,n))return!0}return!1},m.contains=m.includes=m.include=function(n,t,r,e){return
+k(n)||(n=m.values(n)),(“number”!=typeof
+r||e)&amp;&amp;(r=0),m.indexOf(n,t,r)&gt;=0},m.invoke=function(n,t){var
+r=l.call(arguments,2),e=m.isFunction(t);return m.map(n,function(n){var <a
+href="t">u=e?t:n</a>;return
+null==u?u:u.apply(n,r)})},m.pluck=function(n,t){return
+m.map(n,m.property(t))},m.where=function(n,t){return
+m.filter(n,m.matcher(t))},m.findWhere=function(n,t){return
+m.find(n,m.matcher(t))},m.max=function(n,t,r){var
+e,u,i=-1/0,o=-1/0;if(null==t&amp;&amp;null!=n){n=k(n)?n:m.values(n);for(var
+<a href="a">a=0,c=n.length;c>a;a++)e=n</a>,e&gt;i&amp;&amp;(i=e)}else
+t=x(t,r),m.each(n,function(n,r,e){u=t(n,r,e),(u&gt;o||u===-1/0&amp;&amp;i===-1/0)&amp;&amp;(i=n,o=u)});return
+i},m.min=function(n,t,r){var
+e,u,i=1/0,o=1/0;if(null==t&amp;&amp;null!=n){n=k(n)?n:m.values(n);for(var
+<a href="a">a=0,c=n.length;c>a;a++)e=n</a>,i&gt;e&amp;&amp;(i=e)}else
+t=x(t,r),m.each(n,function(n,r,e){u=t(n,r,e),(o&gt;u||1/0===u&amp;&amp;1/0===i)&amp;&amp;(i=n,o=u)});return
+i},m.shuffle=function(n){for(var <a
+href="i">t,r=k(n)?n:m.values(n),e=r.length,u=Array(e),i=0;e>i;i++)t=m.random(0,i),t!==i&&(u</a>=<a
+href="t">u</a>),<a href="t">u</a>=<a href="i">r</a>;return
+u},m.sample=function(n,t,r){return <a
+href="m.random(n.length-1)">null==t||r?(k(n)||(n=m.values(n)),n</a>):m.shuffle(n).slice(0,Math.max(0,t))},m.sortBy=function(n,t,r){return
+t=x(t,r),m.pluck(m.map(n,function(n,r,e){return{value:n,index:r,criteria:t(n,r,e)}}).sort(function(n,t){var
+r=n.criteria,e=t.criteria;if(r!==e){if(r&gt;e||r===void 0)return
+1;if(e&gt;r||e===void 0)return-1}return n.index-t.index}),“value”)};var
+F=function(n){return function(t,r,e){var u={};return
+r=x(r,e),m.each(t,function(e,i){var
+o=r(e,i,t);n(u,e,o)}),u}};m.groupBy=F(function(n,t,r){<a
+href="r">m.has(n,r)?n</a>.<a
+href="r">push(t):n</a>=[t]}),m.indexBy=F(function(n,t,r){<a
+href="r">n</a>=t}),m.countBy=F(function(n,t,r){<a
+href="r">m.has(n,r)?n</a>++:<a
+href="r">n</a>=1}),m.toArray=function(n){return
+n?m.isArray(n)?l.call(n):k(n)?m.map(n,m.identity):m.values(n):[]},m.size=function(n){return
+null==n?0:k(n)?n.length:m.keys(n).length},m.partition=function(n,t,r){t=x(t,r);var
+<a href="">e=[],u=</a>;return
+m.each(n,function(n,r,i){(t(n,r,i)?e:u).push(n)}),[e,u]},m.first=m.head=m.take=function(n,t,r){return
+null==n?void <a
+href="0">0:null==t||r?n</a>:m.initial(n,n.length-t)},m.initial=function(n,t,r){return
+l.call(n,0,Math.max(0,n.length-(null==t||r?1:t)))},m.last=function(n,t,r){return
+null==n?void <a
+href="n.length-1">0:null==t||r?n</a>:m.rest(n,Math.max(0,n.length-t))},m.rest=m.tail=m.drop=function(n,t,r){return
+l.call(n,null==t||r?1:t)},m.compact=function(n){return
+m.filter(n,m.identity)};var S=function(n,t,r,e){for(var
+u=[],i=0,o=e||0,a=O(n);a&gt;o;o++){var <a
+href="o">c=n</a>;if(k©&amp;&amp;(m.isArray©||m.isArguments©)){t||(c=S(c,t,r));var
+<a href="i++">f=0,l=c.length;for(u.length+=l;l>f;)u</a>=<a
+href="f++">c</a>}else <a href="i++">r||(u</a>=c)}return
+u};m.flatten=function(n,t){return S(n,t,!1)},m.without=function(n){return
+m.difference(n,l.call(arguments,1))},m.uniq=m.unique=function(n,t,r,e){m.isBoolean(t)||(e=r,r=t,t=!1),null!=r&amp;&amp;(r=x(r,e));for(var
+<a href="">u=[],i=</a>,o=0,a=O(n);a&gt;o;o++){var <a
+href="o">c=n</a>,f=r?r(c,o,n):c;t?(o&amp;&amp;i===f||u.push©,i=f):r?m.contains(i,f)||(i.push(f),u.push©):m.contains(u,c)||u.push©}return
+u},m.union=function(){return
+m.uniq(S(arguments,!0,!0))},m.intersection=function(n){for(var
+t=[],r=arguments.length,e=0,u=O(n);u&gt;e;e++){var <a
+href="e">i=n</a>;if(!m.contains(t,i)){for(var <a
+href="o">o=1;r>o&&m.contains(arguments</a>,i);o++);o===r&amp;&amp;t.push(i)}}return
+t},m.difference=function(n){var t=S(arguments,!0,!0,1);return
+m.filter(n,function(n){return!m.contains(t,n)})},m.zip=function(){return
+m.unzip(arguments)},m.unzip=function(n){for(var <a
+href="e">t=n&&m.max(n,O).length||0,r=Array(t),e=0;t>e;e++)r</a>=m.pluck(n,e);return
+r},m.object=function(n,t){for(var r={},<a
+href="e">e=0,u=O(n);u>e;e++)t?r[n</a>]=<a href="e">t</a>:<a
+href="e">r[n</a>[<a href="e">0]]=n</a>[1];return
+r},m.findIndex=t(1),m.findLastIndex=t(-1),m.sortedIndex=function(n,t,r,e){r=x(r,e,1);for(var
+u=r(t),i=0,o=O(n);o&gt;i;){var <a
+href="a">a=Math.floor((i+o)/2);r(n</a>)&lt;u?i=a+1:o=a}return
+i},m.indexOf=r(1,m.findIndex,m.sortedIndex),m.lastIndexOf=r(-1,m.findLastIndex),m.range=function(n,t,r){null==t&amp;&amp;(t=n||0,n=0),r=r||1;for(var
+<a
+href="i">e=Math.max(Math.ceil((t-n)/r),0),u=Array(e),i=0;e>i;i++,n+=r)u</a>=n;return
+u};var E=function(n,t,r,e,u){if(!(e instanceof t))return n.apply(r,u);var
+i=j(n.prototype),o=n.apply(i,u);return
+m.isObject(o)?o:i};m.bind=function(n,t){if(g&amp;&amp;n.bind===g)return
+g.apply(n,l.call(arguments,1));if(!m.isFunction(n))throw new
+TypeError(“Bind must be called on a function”);var
+r=l.call(arguments,2),e=function(){return
+E(n,e,t,this,r.concat(l.call(arguments)))};return
+e},m.partial=function(n){var t=l.call(arguments,1),r=function(){for(var <a
+href="o">e=0,u=t.length,i=Array(u),o=0;u>o;o++)i</a>=<a href="o">t</a>===<a
+href="e++">m?arguments</a>:<a href="o">t</a>;<a
+href="e++">for(;e<arguments.length;)i.push(arguments</a>);return
+E(n,r,this,this,i)};return r},m.bindAll=function(n){var
+t,r,e=arguments.length;if(1&gt;=e)throw new Error(“bindAll must be passed
+function <a href="t">names”);for(t=1;e>t;t++)r=arguments</a>,<a
+href="r">n</a>=<a href="r">m.bind(n</a>,n);return
+n},m.memoize=function(n,t){var r=function(e){var
+u=r.cache,i=“”+(t?t.apply(this,arguments):e);return <a
+href="i">m.has(u,i)||(u</a>=<a
+href="i">n.apply(this,arguments)),u</a>};return
+r.cache={},r},m.delay=function(n,t){var r=l.call(arguments,2);return
+setTimeout(function(){return
+n.apply(null,r)},t)},m.defer=m.partial(m.delay,m,1),m.throttle=function(n,t,r){var
+e,u,i,o=null,a=0;r||(r={});var
+c=function(){a=r.leading===!1?0:m.now(),o=null,i=n.apply(e,u),o||(e=u=null)};return
+function(){var f=m.now();a||r.leading!==!1||(a=f);var l=t-(f-a);return
+e=this,u=arguments,0&gt;=l||l&gt;t?(o&amp;&amp;(clearTimeout(o),o=null),a=f,i=n.apply(e,u),o||(e=u=null)):o||r.trailing===!1||(o=setTimeout(c,l)),i}},m.debounce=function(n,t,r){var
+e,u,i,o,a,c=function(){var
+f=m.now()-o;t&gt;f&amp;&amp;f&gt;=0?e=setTimeout(c,t-f):(e=null,r||(a=n.apply(i,u),e||(i=u=null)))};return
+function(){i=this,u=arguments,o=m.now();var f=r&amp;&amp;!e;return
+e||(e=setTimeout(c,t)),f&amp;&amp;(a=n.apply(i,u),i=u=null),a}},m.wrap=function(n,t){return
+m.partial(t,n)},m.negate=function(n){return
+function(){return!n.apply(this,arguments)}},m.compose=function(){var
+n=arguments,t=n.length-1;return function(){for(var <a
+href="t">r=t,e=n</a>.<a
+href="r">apply(this,arguments);r–;)e=n</a>.call(this,e);return
+e}},m.after=function(n,t){return
+function(){return–n&lt;1?t.apply(this,arguments):void
+0}},m.before=function(n,t){var r;return
+function(){return–n&gt;0&amp;&amp;(r=t.apply(this,arguments)),1&gt;=n&amp;&amp;(t=null),r}},m.once=m.partial(m.before,2);var
+M=!{toString:null}.<a
+href=""valueOf","isPrototypeOf","toString","propertyIsEnumerable","hasOwnProperty","toLocaleString"">propertyIsEnumerable(“toString”),I=</a>;m.keys=function(n){if(!m.isObject(n))return[];if(v)return
+v(n);var t=[];for(var r in n)m.has(n,r)&amp;&amp;t.push®;return
+M&amp;&amp;e(n,t),t},m.allKeys=function(n){if(!m.isObject(n))return[];var
+t=[];for(var r in n)t.push®;return
+M&amp;&amp;e(n,t),t},m.values=function(n){for(var <a
+href="u">t=m.keys(n),r=t.length,e=Array®,u=0;r>u;u++)e</a>=<a
+href="u">n[t</a>];return e},m.mapObject=function(n,t,r){t=x(t,r);for(var
+e,u=m.keys(n),i=u.length,o={},<a href="a">a=0;i>a;a++)e=u</a>,<a
+href="e">o</a>=<a href="e">t(n</a>,e,n);return
+o},m.pairs=function(n){for(var <a
+href="u">t=m.keys(n),r=t.length,e=Array®,u=0;r>u;u++)e</a>=[<a
+href="u">t</a>,<a href="u">n[t</a>]];return e},m.invert=function(n){for(var
+t={},<a href="e">r=m.keys(n),e=0,u=r.length;u>e;e++)t[n[r</a>]]=<a
+href="e">r</a>;return t},m.functions=m.methods=function(n){var t=[];for(var
+r in <a href="r">n)m.isFunction(n</a>)&amp;&amp;t.push®;return
+t.sort()},m.extend=_(m.allKeys),m.extendOwn=m.assign=_(m.keys),m.findKey=function(n,t,r){t=x(t,r);for(var
+<a href="i">e,u=m.keys(n),i=0,o=u.length;o>i;i++)if(e=u</a>,<a
+href="e">t(n</a>,e,n))return e},m.pick=function(n,t,r){var
+e,u,i={},o=n;if(null==o)return
+i;m.isFunction(t)?(u=m.allKeys(o),e=b(t,r)):(u=S(arguments,!1,!1,1),e=function(n,t,r){return
+t in r},o=Object(o));for(var a=0,c=u.length;c&gt;a;a++){var <a
+href="a">f=u</a>,<a href="f">l=o</a>;<a href="f">e(l,f,o)&&(i</a>=l)}return
+i},m.omit=function(n,t,r){if(m.isFunction(t))t=m.negate(t);else{var
+e=m.map(S(arguments,!1,!1,1),String);t=function(n,t){return!m.contains(e,t)}}return
+m.pick(n,t,r)},m.defaults=_(m.allKeys,!0),m.create=function(n,t){var
+r=j(n);return t&amp;&amp;m.extendOwn(r,t),r},m.clone=function(n){return
+m.isObject(n)?m.isArray(n)?n.slice():m.extend({},n):n},m.tap=function(n,t){return
+t(n),n},m.isMatch=function(n,t){var
+r=m.keys(t),e=r.length;if(null==n)return!e;for(var
+u=Object(n),i=0;e&gt;i;i++){var <a href="i">o=r</a>;<a
+href="o">if(t</a>!==<a href="o">u</a>||!(o in u))return!1}return!0};var
+N=function(n,t,r,e){if(n===t)return
+0!==n||1/n===1/t;if(null==n||null==t)return n===t;n instanceof
+m&amp;&amp;(n=n._wrapped),t instanceof m&amp;&amp;(t=t._wrapped);var
+u=s.call(n);if(u!==s.call(t))return!1;switch(u){case“[object
+RegExp]”:case“[object String]”:return“”+n==“”+t;case“[object
+Number]”:return+n!==+n?+t!==+t:0===+n?1/+n===1/t:+n===+t;case“[object
+Date]”:case“[object Boolean]”:return+n===+t}var i=“[object
+Array]”===u;if(!i){if(“object”!=typeof n||“object”!=typeof t)return!1;var
+o=n.constructor,a=t.constructor;if(o!==a&amp;&amp;!(m.isFunction(o)&amp;&amp;o
+instanceof o&amp;&amp;m.isFunction(a)&amp;&amp;a instanceof
+a)&amp;&amp;“constructor”in n&amp;&amp;“constructor”in t)return!1}<a
+href="">r=r||[],e=e||</a>;for(var <a
+href="c">c=r.length;c–;)if(r</a>===n)return <a
+href="c">e</a>===t;if(r.push(n),e.push(t),i){<a
+href="c">if(c=n.length,c!==t.length)return!1;for(;c–;)if(!N(n</a>,<a
+href="c">t</a>,r,e))return!1}else{var <a
+href="c">f,l=m.keys(n);if(c=l.length,m.keys(t).length!==c)return!1;for(;c–;)if(f=l</a>,!<a
+href="f">m.has(t,f)||!N(n</a>,<a href="f">t</a>,r,e))return!1}return
+r.pop(),e.pop(),!0};m.isEqual=function(n,t){return
+N(n,t)},m.isEmpty=function(n){return
+null==n?!0:k(n)&amp;&amp;(m.isArray(n)||m.isString(n)||m.isArguments(n))?0===n.length:0===m.keys(n).length},m.isElement=function(n){return!(!n||1!==n.nodeType)},m.isArray=h||function(n){return“[object
+Array]”===s.call(n)},m.isObject=function(n){var t=typeof
+n;return“function”===t||“object”===t&amp;&amp;!!n},<a
+href=""Arguments","Function","String","Number","Date","RegExp","Error"">m.each(</a>,function(n){<a
+href=""is"+n">m</a>=function(t){return s.call(t)===“[object
+”<code>n</code>“]”}}),m.isArguments(arguments)||(m.isArguments=function(n){return
+m.has(n,“callee”)}),“function”!=typeof/./&amp;&amp;“object”!=typeof
+Int8Array&amp;&amp;(m.isFunction=function(n){return“function”==typeof
+n||!1}),m.isFinite=function(n){return
+isFinite(n)&amp;&amp;!isNaN(parseFloat(n))},m.isNaN=function(n){return
+m.isNumber(n)&amp;&amp;n!==+n},m.isBoolean=function(n){return
+n===!0||n===!1||“[object Boolean]”===s.call(n)},m.isNull=function(n){return
+null===n},m.isUndefined=function(n){return n===void
+0},m.has=function(n,t){return
+null!=n&amp;&amp;p.call(n,t)},m.noConflict=function(){return
+u._=i,this},m.identity=function(n){return n},m.constant=function(n){return
+function(){return
+n}},m.noop=function(){},m.property=w,m.propertyOf=function(n){return
+null==n?function(){}:function(t){return <a
+href="t">n</a>}},m.matcher=m.matches=function(n){return
+n=m.extendOwn({},n),function(t){return
+m.isMatch(t,n)}},m.times=function(n,t,r){var
+e=Array(Math.max(0,n));t=b(t,r,1);for(var <a
+href="u">u=0;n>u;u++)e</a>=t(u);return e},m.random=function(n,t){return
+null==t&amp;&amp;(t=n,n=0),n+Math.floor(Math.random()*(t-n+1))},m.now=Date.now||function(){return(new
+Date).getTime()};var
+B={“&amp;”:“&amp;amp;”,“&lt;”:“&amp;lt;”,“&gt;”:“&amp;gt;”,&#39;“&#39;:”&amp;quot;“,”&#39;“:”&amp;#x27;“,”`“:”&amp;#x60;“},T=m.invert(B),R=function(n){var
+t=function(t){return <a
+href="t">n</a>},r=”(?:“+m.keys(n).join(”|“)+”)“,e=RegExp®,u=RegExp(r,”g“);return
+function(n){return
+n=null==n?”“:”“+n,e.test(n)?n.replace(u,t):n}};m.escape=R(B),m.unescape=R(T),m.result=function(n,t,r){var
+e=null==n?void <a href="t">0:n</a>;return e===void
+0&amp;&amp;(e=r),m.isFunction(e)?e.call(n):e};var
+q=0;m.uniqueId=function(n){var t=+<code>q</code>”“;return
+n?n+t:t},m.templateSettings={<a href="\s\S">evaluate:/<%(</a>+?)%&gt;/<a
+href="\s\S">g,interpolate:/<%=(</a>+?)%&gt;/<a
+href="\s\S">g,escape:/<%-(</a>+?)%&gt;/g};var
+K=/(.)^/,z={”&#39;“:”&#39;“,”\“:”\“,”r“:”r“,”n“:”n“,”u2028“:”u2028“,”u2029“:”u2029“},D=/\|&#39;|r|n|u2028|u2029/g,L=function(n){<a
+href="n">return”\“+z</a>};m.template=function(n,t,r){!t&amp;&amp;r&amp;&amp;(t=r),t=m.defaults({},t,m.templateSettings);var
+<a
+href="(t.escape||K).source,(t.interpolate||K).source,(t.evaluate||K).source">e=RegExp(</a>.join(”|“)+”|$“,”g“),u=0,i=”__p+=&#39;“;n.replace(e,function(t,r,e,o,a){return
+i+=n.slice(u,a).replace(D,L),u=a+t.length,r?i+=”&#39;+n((__t=(“<code>r</code>”))==null?&#39;&#39;:_.escape(__t))+n&#39;“:e?i+=”&#39;+n((__t=(“<code>e</code>”))==null?&#39;&#39;:__t)+n&#39;“:o&amp;&amp;(i+=”&#39;;n“<code>o</code>”n__p+=&#39;“),t}),i+=”&#39;;n“,t.variable||(i=”with(obj||{}){n“<code>i</code>”}n“),i=”var
+__t,__p=&#39;&#39;,__j=Array.prototype.join,“+”print=function(){__p+=__j.call(arguments,&#39;&#39;);};n“<code>i</code>”return
+__p;n“;try{var o=new Function(t.variable||”obj“,”_“,i)}catch(a){throw
+a.source=i,a}var c=function(n){return
+o.call(this,n,m)},f=t.variable||”obj“;return
+c.source=”function(“<code>f</code>”){n“<code>i</code>”}“,c},m.chain=function(n){var
+t=m(n);return t._chain=!0,t};var P=function(n,t){return
+n._chain?m(t).chain():t};m.mixin=function(n){m.each(m.functions(n),function(t){var
+<a href="t">r=m</a>=<a href="t">n</a>;<a
+href="t">m.prototype</a>=function(){var <a
+href="this._wrapped">n=</a>;return
+f.apply(n,arguments),P(this,r.apply(m,n))}})},<a
+href=""pop","push","reverse","shift","sort","splice","unshift"">m.mixin(m),m.each(</a>,function(n){var
+<a href="n">t=o</a>;<a href="n">m.prototype</a>=function(){var
+r=this._wrapped;return
+t.apply(r,arguments),”shift“!==n&amp;&amp;”splice“!==n||0!==r.length||delete
+<a href="0">r</a>,P(this,r)}}),<a
+href=""concat","join","slice"">m.each(</a>,function(n){var <a
+href="n">t=o</a>;<a href="n">m.prototype</a>=function(){return
+P(this,t.apply(this._wrapped,arguments))}}),m.prototype.value=function(){return
+this._wrapped},m.prototype.valueOf=m.prototype.toJSON=m.prototype.value,m.prototype.toString=function(){return”“+this._wrapped},”function“==typeof
+define&amp;&amp;define.amd&amp;&amp;define(”underscore“,[],function(){return
+m})}).call(this); //# sourceMappingURL=underscore-min.map</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
