@@ -1,13 +1,9 @@
 /* global google */
 /* global _ */
 /**
- * scripts.js
+ * mapscripts.js
  *
- * Computer Science 50
- * Problem Set 8
- *
- * Global JavaScript.
- * 
+ * Derired from Computer Science 50 Problem Set 8 scripts.js
  */
 
 // Google Map
@@ -16,10 +12,17 @@ var map;
 // Make this dynamic
 // Create a JSON query of active types
 
-var types= ["venue","pollsite"];
+// TO DO post May 9 -- Change this to venue_types
+var types= ["venue","pollsite","citibike","liquor_license_applicant"];
+
+var event_types = ["sports","theater","festival","music","general"]
+
+var incident_types = ["crash"];
 
 // markers for map
 var markers = [];
+
+var incident_markers = [];
 
 // info window
 var info = new google.maps.InfoWindow();
@@ -51,30 +54,7 @@ $(function() {
 
     ];
 
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-    // options for map
-    // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-    
-  
-    
-    
+   
     var options = {
         // center: {lat: 40.7159, lng: -73.9861}
         center: {lat: 40.7159, lng: -73.9861}, 
@@ -83,7 +63,7 @@ if (navigator.geolocation) {
         maxZoom: 20,
         panControl: true,
         styles: styles,
-        zoom: 13,
+        zoom: 16,
         zoomControl: true
     };
 
@@ -92,7 +72,7 @@ if (navigator.geolocation) {
 
     // instantiate map
     map = new google.maps.Map(canvas, options);
-
+    
     // configure UI once Google Map is idle (i.e., loaded)
     google.maps.event.addListenerOnce(map, "idle", configure);
 
@@ -102,7 +82,7 @@ if (navigator.geolocation) {
  * Adds marker for place to map.
  */
 
-
+// TO DO AFTER MAY 9 --> Reman f
 function addMarker(place)
 {
 
@@ -128,23 +108,138 @@ function addMarker(place)
     
     // Push Marker Into Array
     markers.push(marker);
-
-    var content = place.venue.name; 
     
-    content += "<br><img src=../../assets/" + place.venue.venue_type + ".png>";
- 
+    
+    var content = "";
+    
+    $.getJSON("../../api/v1/events/search?venue_id="+place.venue.id)
+        .done(function(data, textStatus, jqXHR) {
+            if (data[0] !=null) {
+                content += "<b>";
+                content += place.venue.name;
+                content += "</b><br><ul>";
+                // Make this more dynamic around which fields are available
+                // get iteration to work
+                
+                // sort events by date
+                for (var i = 0; i < data.length; i++)
+                {
+  
+                    // only show events after now and events with a datatime
+                    //if ((data[i].event.datetime) && (data[i].event.datetime > Date())) {
+                        // include event URL if it exists
+                        // make this a modal that pops out
+                        content += "<li><a href=/events/" + data[i].event.id + ">" + data[i].event.event_title+"</a></li>";
+                        content += "<ul>";
+                        // Get JQuery to format data right
+                        //content += "<li>Date & Time:" + event.datetime;
+                        
+                        if (data[i].event.event_url) {
+                            content += "<li><a href=" + data[i].event.event_url + " TARGET=_BLANK> More info/Tix </a></li>";
+                            
+                        }
+                        content += "</ul></li>"
+                       
+                    //}
+                    
+            
+                    
+                        
+                }
+                content += "</ul>";
+            }
+            
+            // No events were returned assocaited with the venue, so we will just show a picture 
+            else {
+                content += place.venue.name; 
+                content += "<br><img src=../../assets/" + place.venue.venue_type + ".png>";
+            }
+            
+            
+            
+            
+        })
+        
+        .fail(function(jqXHR, textStatus, errorThrown) {
+        content +=  place.venue.name; 
+        content += "<br><img src=../../assets/" + place.venue.venue_type + ".png>";
 
+        // log error to browser's console
+        console.log(errorThrown.toString());
+        });
+        
+    
 
     // derived from view-source:http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
     // show infowindow on click   
     google.maps.event.addListener(marker, "click", function (e) { showInfo(marker, content); });
 
     
-    // Extra fun
-    var content_double_click = place.venue.name;
-    google.maps.event.addListener(marker, "dblclick", function (e) { showInfo(marker, content_double_click); });
+    // Double Click (Note Implemented)
+    //var content_double_click = place.venue.name;
+    //google.maps.event.addListener(marker, "dblclick", function (e) { showInfo(marker, content_double_click); });
 
 }
+
+
+
+
+
+
+
+// This is the incident marker 
+function addIncidentMarker(place)
+{
+
+    // Code built in part off of code at http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/examples/events.html
+    var lat = Number(place.incident.latitude);
+    var lng = Number(place.incident.longitude);
+  
+    var myLatLng = {lat:lat, lng:lng};
+    
+    //var image = '../../assets/' + place.incident.incident_type + '-40x40.png';
+    var image = '../../assets/crash-80x80.png';
+    
+    
+    //var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    //var image = 'http://www.taperssection.com/avatars/phish_transparent.gif';
+    //var image = 'img/phish_transparent.gif';
+    
+    var incident_marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: "Crash",
+        icon: image
+        
+    });
+    
+    // Push Marker Into Array
+    incident_markers.push(incident_marker);
+    
+    
+    var content = "Fatal Crash";
+    content += "Date (Month / Year)::&nbsp;" + place.incident.month + "/" + place.incident.year;
+    content += "<br>Pedestrians Killed:&nbsp;" + place.incident.pedfatalities;
+    content += "<br>Bikers Killed:&nbsp;" + place.incident.bikefatalities;
+    content += "<br>Motorists Killed:&nbsp;" + place.incident.mvofatalities;
+    
+
+
+    google.maps.event.addListener(incident_marker, "click", function (e) { showInfo(incident_marker, content); });
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Configures application.
@@ -164,6 +259,7 @@ function configure()
     // remove markers whilst dragging
     google.maps.event.addListener(map, "dragstart", function() {
         removeMarkers();
+        removeIncidentMarkers();
     });
 
     // configure typeahead
@@ -207,7 +303,7 @@ function configure()
                 types.push($(this).val());
             });
 
-            console.log("Selected Types: " + types.join("|"));
+            //console.log("Selected Types: " + types.join("|"));
             
             update(types);
         });
@@ -240,6 +336,9 @@ function hideInfo()
 /**
  * Removes markers from map.
  */
+
+
+
 function removeMarkers()
 {
     // derived from https://developers.google.com/maps/documentation/javascript/examples/marker-remove
@@ -253,6 +352,21 @@ function removeMarkers()
 
 }
 
+
+function removeIncidentMarkers()
+{
+    // derived from https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+    for (var i = 0; i < incident_markers.length; i++)
+    {
+        incident_markers[i].setMap(null);
+        incident_markers[i] = null;
+    }
+    
+    incident_markers = [];
+
+}
+
+
 /**
  * Searches database for typeahead's suggestions.
  */
@@ -263,7 +377,7 @@ function search(query, cb)
         geo: query
     };
     //$.getJSON("https://ide50-runderwood5.cs50.io/search.php", parameters)
-    $.getJSON("../api/v1/places/search", parameters)
+    $.getJSON("../api/v1/us_geos/search", parameters)
     
     .done(function(data, textStatus, jqXHR) {
 
@@ -316,34 +430,37 @@ function update(types)
     var longitude = locationCenter.lng();
     
     var searchLocation = latitude+","+longitude;
-    
-    console.log("searchLocation: " + searchLocation);
+
     
 
     types = types || ["all"];
     var typesString = types.join("|");
-    console.log("typesString: " + typesString );
+
 
     // get places within bounds (asynchronously)
     var parameters = {
         types:typesString,
         location:searchLocation,
-        radius:'5000.0'
+        radius:'1000.0'
 
     };
     
-   // Make flip of types entirely on client side
     
-    console.log(parameters);
-    //$.getJSON("https://ide50-runderwood5.cs50.io/update.php", parameters)
-    //$.getJSON("https://event-tickets-tracker-runderwood5.cs50.io/api/v1/venues/search?location=40.6720359149362,-73.9840260520577&radius=10000.0")
-    $.getJSON("https://event-tickets-tracker-runderwood5.cs50.io/api/v1/venues/search", parameters)
+    var incident_parameters = {
+        types:incident_types,
+        location:searchLocation,
+        radius:'1000.0'
+
+    };
+    
+    
+    // Add Venues
+    $.getJSON("../../api/v1/venues/search", parameters)
     .done(function(data, textStatus, jqXHR) {
 
         // remove old markers from map
         removeMarkers();
         
-
 
         // add new markers to map
         for (var i = 0; i < data.length; i++)
@@ -357,4 +474,33 @@ function update(types)
          // log error to browser's console
          console.log(errorThrown.toString());
      });
+     
+     
+     // Add Incidents
+     
+    $.getJSON("../../api/v1/incidents/search", incident_parameters)
+    .done(function(data, textStatus, jqXHR) {
+
+        // remove old markers from map
+        removeIncidentMarkers();
+        
+
+        // add new markers to map
+        for (var i = 0; i < data.length; i++)
+        {
+            addIncidentMarker(data[i]);
+            // Add handling such that only markers are added for venues and events
+        }
+     })
+     .fail(function(jqXHR, textStatus, errorThrown) {
+
+         // log error to browser's console
+         console.log(errorThrown.toString());
+     });
+     
+     
+     
+     
+     
+     
 }

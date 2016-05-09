@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails-api'
 
+gem 'jquery-colorbox-rails'
+
+gem 'kaminari'
+
 gem 'geokit'
 gem 'geokit-rails', github: 'geokit/geokit-rails'
 

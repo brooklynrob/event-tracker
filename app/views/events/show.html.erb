@@ -1,11 +1,31 @@
-<p>
-  <strong>Title:</strong>
-  <%= @event.event_title %>
-</p>
+<h1>
+  Event Details
+  
+</h1><p>
+  
+  
+<table class="table table-striped">
+  <tr>
+    <td>Title</td>
+    <td><%= @event.event_title %></td>
+  </tr>
  
-<p>
-  <strong>Text:</strong>
-  <%= @event.event_title %>
-</p>
+<% if (@event.event_url != nil) %>
+  <tr>
+    <td>URL</td>
+    <td><a href="<%= @event.event_url%>" TARGET=_BLANK> More info/Tix</td>
+  </tr>
+<% end %>
 
-<%= link_to 'Back', events_path %>
+
+  <tr>
+    <td>Venue</td>
+    <td><%= @event.venue_name %></td>
+  </tr>
+  
+  <tr>
+    <td>Venue City</td>
+    <td><%= @event.venue_city %></td>
+  </tr>
+  
+</table>

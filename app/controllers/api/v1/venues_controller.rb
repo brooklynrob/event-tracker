@@ -18,32 +18,17 @@ class Api::V1::VenuesController < ApplicationController
     end
     
     def search
-
-        #@urlstring_to_post = 'https://www.tran.sla.ny.gov/servlet/ApplicationServlet?pageName=com.ibm.nysla.data.publicquery.PublicQueryAdvanceTextResultsDownloadPage&validated=true'
-        @urlstring_to_post = 'https://www.tran.sla.ny.gov/servlet/ApplicationServlet'
-        
-        #<input type="hidden" name="pageName" value="com.ibm.nysla.data.publicquery.PublicQueryAdvanceSearchPage">
-        #<input type="hidden" name="validated" value="false">
-
-        
-        
-
-        
-        
-        
         @venues = Array.new
-
+        #for now I am not returning the events array but in the future will
+        @events = Array.new
         
         if (params[:types] != nil)
             types = params[:types].split('|')
         else
-            types = ['pollsite','venue']
+            # To do --> Put this is a configuration file
+            types = ['pollsite','venue','citibike','liquor_license_applicant']
         end
         
-        # This is a workaround for now -- want to fix this later
-        #if types[0]='all'
-        #    types = ['pollsite','venue']
-        #end
      
         locations = params[:location].split(',')
         if (locations[0] != nil)
@@ -61,36 +46,35 @@ class Api::V1::VenuesController < ApplicationController
             radius = (params[:radius]).to_f
             radius = radius/1000
         else
-            radius = 10
+            #set default radius to 1 kilometer
+            radius = 1
         end
         
         Venue.near([latitude, longitude], radius, :units => :km).each do |venue|
             if (types.include?venue.venue_type) 
-                if (venue.latitude != nil) && (venue.longitude != nil) && (venue.address1 != nil)
+                #only return venues we can put to a map
+                
+                #if (venue.latitude != nil) && (venue.longitude != nil) && (venue.address1 != nil)
+                if (venue.latitude != nil) && (venue.longitude != nil) 
+                    
+                    #add events from this event to events list
+                    venue.events.each do |event|
+                        #to do -- join venue lat and lon to event such that events 
+                        @events.push(event)
+                    end
                     @venues.push(venue)
                 end
             end
-     
-            #Rails.logger.warn "venue #{venue}"
+
         end
         
-        #@venues = Venue.where("venues.city LIKE ?", "%#{params[:geo]}%")
-        #@venues = @venues << Venue.where("venues.postal_code LIKE ?", "%#{params[:geo]}%")
-        
-
-        
-        
-        
-        #@venues = Venue.where city:(      params[:geo]    )
-        #@venues = Venue.where city:("content LIKE ? %#{params[:geo]}%")
-        
-
-        
-        #Question.where("content LIKE ?" , "%#{farming}%")
-        
-        #@places = UsGeo.where place_name:(params[:geo])
-    
         render :json => @venues.as_json
+        
+        # Alternate versions I have used to get JSON working
+        #render :json => [{:venues => @venues}]
+        #render :json => {:venues => @venues, :events => @events}
+        #render :json => [{:venues => @venues, :events => @events}]
+
     end
     
     

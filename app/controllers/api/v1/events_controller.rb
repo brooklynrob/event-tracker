@@ -12,10 +12,10 @@ class Api::V1::EventsController < ApplicationController
         Event.all.each do |event|
             
             #Add a property that contains the venue as an array
-            class << event
-                attr_accessor :venue
-            end
-        event.venue = "hello"    
+            #class << event
+            #    attr_accessor :venue
+            #end
+        #event.venue = "hello"    
         #event.venue = Venue.where("id = event.venue_id")
         @events.push(event)
             
@@ -30,11 +30,18 @@ class Api::V1::EventsController < ApplicationController
     
     def search
         @events = Array.new
+        
+        #serach by venue id
+        @events = Event.find_by(venue_id:params[:venue_id])
+        render :json => [@events.as_json]
+        
+        
+        
         #@venues = Venue.where city:(      params[:geo]    )
         #@venues = Venue.where city:("content LIKE ? %#{params[:geo]}%")
         
         # find all venues in that geo
-        @venues = Venue.where("venues.city LIKE ?", "%#{params[:geo]}%")
+        #@venues = Venue.where("venues.city LIKE ?", "%#{params[:geo]}%")
         
         # iterate by venues and find events that are at the venue
         
@@ -43,8 +50,9 @@ class Api::V1::EventsController < ApplicationController
         #Question.where("content LIKE ?" , "%#{farming}%")
         
         #@places = UsGeo.where place_name:(params[:geo])
+        
     
-        render :json => @venues.as_json(root: false, :except => ['created_at', 'updated_at']) 
+        # render :json => @venues.as_json(root: false, :except => ['created_at', 'updated_at']) 
     end
     
     

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503145542) do
+ActiveRecord::Schema.define(version: 20160508232617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,34 @@ ActiveRecord::Schema.define(version: 20160503145542) do
 
   create_table "events", force: :cascade do |t|
     t.string   "event_title"
-    t.string   "event_city"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.datetime "datetime"
     t.string   "event_sourceid"
     t.string   "venue_sourceid"
-    t.string   "seatgeek_eventurl"
+    t.string   "event_url"
     t.integer  "venue_id"
     t.string   "event_type"
+    t.string   "event_source"
+  end
+
+  create_table "incident_types", force: :cascade do |t|
+    t.string   "incident_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "incidents", force: :cascade do |t|
+    t.integer  "mvofatalities"
+    t.integer  "pedfatalities"
+    t.integer  "bikefatalities"
+    t.integer  "month"
+    t.integer  "year"
+    t.decimal  "latitude",       precision: 10, scale: 6
+    t.decimal  "longitude",      precision: 10, scale: 6
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "incident_type"
   end
 
   create_table "us_geos", force: :cascade do |t|

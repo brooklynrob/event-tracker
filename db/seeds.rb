@@ -34,25 +34,59 @@ seed_sources =
         "api_key"=> "LF6rm2crQzTbMZ2X"
         
     },
+    
     {
         "source"=> "seatgeek",
-        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=Brooklyn&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=100",
+        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=Brooklyn&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=500",
         "api_key"=> "NDUzMzM5MHwxNDYwNzQzNTQ1"
     },
     {
         "source"=> "seatgeek",
-        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=New+York+City&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=100",
+        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=New+York&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=500",
         "api_key"=> "NDUzMzM5MHwxNDYwNzQzNTQ1"
     },
+
     {
         "source"=> "seatgeek",
-        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=New+York&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=100",
+        "api_url"=> "https://api.seatgeek.com/2/events?venue.city=New+York+City&venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=500",
         "api_key"=> "NDUzMzM5MHwxNDYwNzQzNTQ1"
     },
+    
+    
+    {
+        "source"=> "seatgeek",
+        "api_url"=> "https://api.seatgeek.com/2/events?venue.state=NY&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=300",
+        "api_key"=> "NDUzMzM5MHwxNDYwNzQzNTQ1"
+    },
+    
+    {
+        "source"=> "seatgeek",
+        "api_url"=> "https://api.seatgeek.com/2/events?venue.state=NJ&client_id=NDUzMzM5MHwxNDYwNzQzNTQ1&per_page=200",
+        "api_key"=> "NDUzMzM5MHwxNDYwNzQzNTQ1"
+    },
+    
+
+
     {
         "source"=> "nyc_pollsites",
         "api_url"=> "https://data.cityofnewyork.us/resource/mifw-tguq.json?$$app_token=eyT06TKDbCr7PdVYa9PT51eRO",
         "api_key"=> "eyT06TKDbCr7PdVYa9PT51eRO"
+    },
+    {
+        "source"=> "citibike",
+        "api_url"=> "https://www.citibikenyc.com/stations/json/",
+        "api_key"=> ""
+    },
+    {
+        "source"=> "NYS-Liquor-Authority",
+        "api_url"=> "https://data.ny.gov/resource/2kid-jvyk.json",
+        "api_key"=> ""
+    },
+    
+    {
+        "source"=> "DOT-Crash-Data",
+        "api_url"=> "http://www.nyc.gov/html/dot/downloads/misc/fatality_all_monthly.json",
+        "api_key"=> ""
     }
     
 ]
@@ -81,8 +115,21 @@ seed_sources.each do |seed|
   response = Net::HTTP.get(uri)
   json_response = JSON.parse(response)
   
+
+
   
   case source
+    when "DOT-Crash-Data"
+      json_response['features'].each do |crash|
+        incident = Incident.find_or_initialize_by(latitude:crash['geometry']['coordinates'][1],longitude:crash['geometry']['coordinates'][0], month:crash['properties']['MN'], year:crash['properties']['YR'])
+        incident.mvofatalities = crash['properties']['MVOFatalit']
+        incident.bikefatalities = crash['properties']['BikeFatali']
+        incident.pedfatalities = crash['properties']['PedFatalit']
+        incident.incident_type = "crash"
+        incident.save!
+    end
+  
+  
     when "nyc_pollsites"
       json_response.each do |pollsite|
       venue = Venue.find_or_initialize_by(venue_sourceid:pollsite['site_number'])
@@ -101,6 +148,76 @@ seed_sources.each do |seed|
         venue.save!
       end
     end
+    
+    
+     when "NYS-Liquor-Authority"
+      json_response.each do |liquor_license_applicant|
+      #if application received in last 30 days && applications is on premises
+      if (liquor_license_applicant['license_type_code'] == "OP") && (liquor_license_applicant['license_received_date'] > (Time.now - (60 * 60 * 24 * 90)))     
+        venue = Venue.find_or_initialize_by(venue_sourceid:liquor_license_applicant['license_certificate_number'])
+        venue.name = liquor_license_applicant['premises_name']
+        venue.address1 = liquor_license_applicant['actual_address_of_premises_address1']
+        venue.city = liquor_license_applicant['city']
+        venue.state = "NY"
+        fulladdress = liquor_license_applicant['actual_address_of_premises_address1'] + "," + liquor_license_applicant['city'] + "," + venue.state
+        latlng = Geocoder.coordinates(fulladdress)
+
+        
+        #print venue.name  + "\n"
+        #print latlng  + "\n"
+        #print (latlng[0])
+        
+        latitude = BigDecimal.new((latlng[0]),6)
+        #print latitude + "\n"
+        venue.latitude = latitude
+        #print venue.latitude + "\n"
+        
+        longitude = BigDecimal.new((latlng[1]),6) 
+        #print longitude + "\n"
+        venue.longitude = longitude 
+        #print venue.longitude  + "\n"
+        
+        venue.venue_source = source 
+        venue.venue_type = "liquor_license_applicant"
+
+        # Only save complete records
+        if (venue.name != nil) && (venue.address1 != nil) && (venue.latitude != nil) && (venue.longitude != nil)
+          # print "About to save " + liquor_license_applicant['premises_name'] + "\n"
+          venue.save!
+        end
+      end  
+    end
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    when "citibike"
+      json_response['stationBeanList'].each do |citibike|
+      id = citibike['id']
+      venue = Venue.find_or_initialize_by(venue_sourceid:id)
+
+        venue.name = "Citibike @ " + citibike['stAddress1']
+        venue.address1 = citibike['stAddress1']
+        venue.latitude = citibike['latitude']
+        venue.longitude = citibike['longitude']
+        venue.city = citibike['city']
+        venue.venue_source = source 
+        venue.venue_type = "citibike"
+
+      # Only save complete records
+      if (venue.name != nil) && (venue.address1 != nil) && (venue.latitude != nil) && (venue.longitude != nil)
+        venue.save!
+      end
+    end
+    
+    
+    
   
     when "eventful"
       json_response['events']['event'].each do |event|
@@ -113,7 +230,8 @@ seed_sources.each do |seed|
       venue = Venue.find_or_initialize_by(venue_sourceid:event['venue_id'])
       venue.name = event['venue_name']
       venue.address1 = event['venue_address']
-
+      venue.city = event['city_name']
+      venue.state = event['region_name']
       venue.latitude = event['latitude']
       venue.longitude = event['longitude']
       
@@ -130,15 +248,15 @@ seed_sources.each do |seed|
         event.venue_id = venue.id
         event.venue_sourceid = venue.venue_sourceid
         
+        event.event_url = event['url']
         event.datetime = event['start_time']
         event.event_title = event_title
+        event.event_source = source
 
         event.save!
       end    
-      
-      
-      
     end
+    
     
     when "seatgeek"
   
@@ -147,7 +265,7 @@ seed_sources.each do |seed|
           
         venue_sourceid = event['venue']['id']
         event_title = event['title']
-        eventurl = event['url']
+        event_url = event['url']
 
 
         
@@ -177,7 +295,8 @@ seed_sources.each do |seed|
           
           event.datetime = event['datetime_local']
           event.event_title = event_title
-          event.seatgeek_eventurl = eventurl
+          event.event_url = event_url
+          event.event_source = source
           event.save!
         end
         
@@ -197,4 +316,4 @@ print "END OF SEED! \n"
 # end
 
 # http://stackoverflow.com/questions/28374671/unable-to-seed-database-in-rails-tutorial
-
+end

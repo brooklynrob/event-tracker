@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Event Tracker App</title>
+  <title>Happening Here</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= yield :head %>
@@ -13,6 +13,11 @@
 <body>
 
 <%= yield %>
+
+<%= link_to 'Event List', events_path %><br>
+<%= link_to 'Venue List', venues_path %><br>
+<%= link_to 'Map,', root_url %><br>
+<%= link_to 'Map', :controller => :places, :action => :search %>
 
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!-- This is just a test file to test creating an event via POST to the api -->
+
+<html>
+    
+<head>
+    <title>EventTracker</title>
+    
+    <link rel="stylesheet" href="/assets/application.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    
+
+    
+    <script src="/assets/application.js"></script>
+</head>
+
+
+<body>
+    <h1>Test of Creating Event via POST to the API</h1>
+    <h2>This is just plain HTML to test creating an event via POST to the api</h2>
+
+
+<form action="/api/v1/events" method="post">
+    <div class="form-group">
+        <input type="text" name="event[event_title]"></input>
+    </div>
+    <div class="form-group">
+        <input type="text" name="event[event_city]"></input>
+    </div>
+    
+    
+    <button type="submit" class="btn btn-default">Add Event</button>
+    
+
+</form>
+    
+</body>
+
+</html>
+    

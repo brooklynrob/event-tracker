@@ -23,6 +23,10 @@ module Workspace
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
+    # This line lets Bower work
+    # See http://dotwell.io/taking-advantage-of-bower-in-your-rails-4-app/ for more info
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+    
     # Allow Rails to be an API app. See http://edgeguides.rubyonrails.org/api_app.html
     #config.api_only = true
     
