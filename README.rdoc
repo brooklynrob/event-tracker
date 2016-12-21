@@ -1,7 +1,16 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README would normally document whatever steps are necessary to get the application up and running.
+
+** Starting the server
+    rails s -p 8080 -b $IP
+
+** Starting PostGres
+    sudo service postgresql start
+
+** Seeding database
+    rake db:seed
+
 
 Things you may want to cover:
 
