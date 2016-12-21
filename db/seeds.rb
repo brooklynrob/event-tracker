@@ -74,7 +74,7 @@ seed_sources =
     },
     {
         "source"=> "citibike",
-        "api_url"=> "https://www.citibikenyc.com/stations/json/",
+        "api_url"=> "https://feeds.citibikenyc.com/stations/stations.json",
         "api_key"=> ""
     },
     {
@@ -88,11 +88,14 @@ seed_sources =
         "api_url"=> "http://www.nyc.gov/html/dot/downloads/misc/fatality_all_monthly.json",
         "api_key"=> ""
     }
+    #{
+    #    "source"=> "CEC13-Calendar",
+    #    "api_url"=> "https://www.googleapis.com/calendar/v3/calendars/r143km8mg3fnd385nga52llkr8@group.calendar.google.com/events?key=AIzaSyBMv1FIy9Dvr_Na8DluqgXL3JRpGhtJVSU&timeMin=2016-05-03T10:00:00Z",
+    #    "api_key"=> "AIzaSyBMv1FIy9Dvr_Na8DluqgXL3JRpGhtJVSU"
+    #}
     
 ]
 
-
-   
 seed_sources.each do |seed|
   
   puts  "The source is #{seed['source']}"
@@ -108,17 +111,46 @@ seed_sources.each do |seed|
     datasource.save!
 
   
-  
-  
-  
   uri = URI(api_url)
   response = Net::HTTP.get(uri)
   json_response = JSON.parse(response)
   
 
-
-  
   case source
+    when "CEC13-Calendar"
+    if (liquor_license_applicant['license_type_code'] == "OP") && (liquor_license_applicant['license_received_date'] > (Time.now - (60 * 60 * 24 * 90)))     
+      venue = Venue.find_or_initialize_by(venue_sourceid:liquor_license_applicant['license_certificate_number'])
+        venue.name = liquor_license_applicant['premises_name']
+        venue.address1 = liquor_license_applicant['actual_address_of_premises_address1']
+        venue.city = liquor_license_applicant['city']
+        venue.state = "NY"
+        fulladdress = liquor_license_applicant['actual_address_of_premises_address1'] + "," + liquor_license_applicant['city'] + "," + venue.state
+        latlng = Geocoder.coordinates(fulladdress)
+        json_response['items'].each do |event|
+        unless (event['location'].nil? != 'nil')
+          #either initialize or find venue based name
+          venue = Venue.find_or_initialize_by(name:event['location'])
+          # To do -- make this get parsed into an actual address -- can geocoder do this?
+          venue.address1 = liquor_license_applicant['actual_address_of_premises_address1']
+
+          #Need to..
+          ##Update the model to have venue_types and it be one to many between venue and venue_types
+          ##Also do a configuation to map events 
+      
+          event = Event.find_or_initialize_by(event_sourceid:event['id'])
+          # set foreign key in event table to venue
+          event.venue_id = venue.id
+          event.venue_sourceid = venue.venue_sourceid
+      
+          event.event_url = event['url']
+          event.datetime = event['start_time']
+          event.event_title = event_title
+          event.event_source = source
+        end #end unless
+      end #end do
+    end #end if
+
+
     when "DOT-Crash-Data"
       json_response['features'].each do |crash|
         incident = Incident.find_or_initialize_by(latitude:crash['geometry']['coordinates'][1],longitude:crash['geometry']['coordinates'][0], month:crash['properties']['MN'], year:crash['properties']['YR'])
@@ -127,9 +159,9 @@ seed_sources.each do |seed|
         incident.pedfatalities = crash['properties']['PedFatalit']
         incident.incident_type = "crash"
         incident.save!
-    end
-  
-  
+      end #end each do
+
+
     when "nyc_pollsites"
       json_response.each do |pollsite|
       venue = Venue.find_or_initialize_by(venue_sourceid:pollsite['site_number'])
@@ -301,8 +333,10 @@ seed_sources.each do |seed|
         end
         
     end
+
       
   end
+
   
 print "END OF SEED! \n"
 
@@ -317,3 +351,6 @@ print "END OF SEED! \n"
 
 # http://stackoverflow.com/questions/28374671/unable-to-seed-database-in-rails-tutorial
 end
+
+
+
